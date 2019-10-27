@@ -23,9 +23,9 @@ class _LoginXState extends State<LoginX> {
     Future validateAndSubmit () async {
       try{
         
-        var authResult =  await auth.signInWithEmailAndPassword(email: _email, password: _password);
+        var user =  await auth.signInWithEmailAndPassword(email: _email, password: _password);
 
-        if(authResult!=null){
+        if(user!=null){
           Navigator.push(context, MaterialPageRoute(builder: (context)=> MainWidget()));
         }
     

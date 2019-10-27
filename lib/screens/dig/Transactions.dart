@@ -9,11 +9,11 @@ class TransactionPage extends KFDrawerContent {
 }
 
 class _TransactionPageState extends State<TransactionPage> {
-  String _name = "Fahad Sultan";
+  // String _name = "Fahad Sultan";
   @override
   Widget build(BuildContext context) {
-    final _width = MediaQuery.of(context).size.width;
-    final _height = MediaQuery.of(context).size.height;
+    // final _width = MediaQuery.of(context).size.width;
+    // final _height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
               body: Center(

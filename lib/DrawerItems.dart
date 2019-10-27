@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:manufacturer/Login_X.dart';
 import 'kf_drawer.dart';
 import 'screens/ProfilePage.dart';
 import 'screens/dig/Transactions.dart';
@@ -132,7 +133,8 @@ class _MainWidgetState extends State<MainWidget> with TickerProviderStateMixin {
               onPressed: () {
                 FirebaseAuth auth = FirebaseAuth.instance;
                 auth.signOut();
-                
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginX()));
+
               },
             ),
             // decoration: BoxDecoration(

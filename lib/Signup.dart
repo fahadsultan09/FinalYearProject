@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,7 +15,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  String userId;
+
   bool obsureTextValue = true;
   File image;
 
@@ -33,15 +33,10 @@ class _SignupPageState extends State<SignupPage> {
     });
   }
   
-  String _fullName;
-  String _email;
-  String _password;
-  String _phoneNum;
-  String _address;
-  String _cnic;
+  String _fullName,_email,_password,_phoneNum,_address,_cnic;
 
   final _formKey = new GlobalKey<FormState>();
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  // final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
 bool validateAndSave() {
 
@@ -59,16 +54,17 @@ bool validateAndSave() {
 
   Future validateAndSubmit () async {
     
-    if (validateAndSave()){
+    if (true){
       try {
-    AuthResult authResult = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email,password:_password);
+    //  AuthResult authResult = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email,password:_password);
                      
-      
-       
+          FirebaseUser _user =  (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email,password:_password)) as FirebaseUser;
+
+    
         // Firestore _firestore = Firestore.instance;
-      if(authResult!=null){
+      if(_user!=null){
         Firestore _firestore = Firestore.instance;
-        _firestore.collection("Users").document(authResult.user.uid).setData(
+        _firestore.collection("Manufacturer").document(_user.uid).setData(
         {"Email": _email,
         "Full Name": _fullName,
         "Phone": _phoneNum,
