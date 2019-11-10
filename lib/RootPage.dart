@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:manufacturer/Authencation.dart';
-import 'package:manufacturer/DrawerItems.dart';
+
+import 'package:manufacturer/screens/main_page.dart';
 
 import 'Login_X.dart';
 
@@ -43,7 +44,7 @@ class _RootPageState extends State<RootPage> {
     if (authStatus == AuthStatus.notSignedIn)
       return new LoginX();
     else
-      return new MainWidget();
+      return new MainPage();
 
 
   }

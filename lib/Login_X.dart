@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:manufacturer/DrawerItems.dart';
+
 import 'package:manufacturer/Signup.dart';
+import 'package:manufacturer/screens/main_page.dart';
 
 class LoginX extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _LoginXState extends State<LoginX> {
         var user =  await auth.signInWithEmailAndPassword(email: _email, password: _password);
 
         if(user!=null){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> MainWidget()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> MainPage()));
         }
     
       }

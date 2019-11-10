@@ -2,10 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../kf_drawer.dart';
-
-
-class EditProfile extends KFDrawerContent {
+class EditProfile extends StatefulWidget {
   @override
   _EditProfileState createState() => _EditProfileState();
 }
@@ -58,36 +55,14 @@ Future<void> setUser()async{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("Profile"),
+        ),
         // resizeToAvoidBottomPadding: false,
         body: SafeArea(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                    child: Material(
-                      shadowColor: Colors.transparent,
-                      color: Colors.transparent,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: Colors.black,
-
-                        ),
-                        onPressed: (){
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ),
-                  ),
-                    new Text("Update Profile",style: TextStyle(fontSize: 20.0),)
-
-                ],
-              ),
-              Expanded(
-                child:                                      SingleChildScrollView(
+        
+        child: SingleChildScrollView(
                   child: Container(
                                             padding: EdgeInsets.only(top: 25.0, left: 20.0, right: 20.0),
                                             child: Column(
@@ -214,10 +189,6 @@ Future<void> setUser()async{
                                             )
                                             ),
                 ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
     

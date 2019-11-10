@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Manafacturer',
       theme: ThemeData(
+        // primaryColor: Colors.black,
       ),
       home: RootPage(auth:new Auth()),
     );

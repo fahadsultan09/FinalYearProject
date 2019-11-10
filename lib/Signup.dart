@@ -1,12 +1,16 @@
 import 'dart:io';
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:manufacturer/DrawerItems.dart';
+import 'package:manufacturer/screens/main_page.dart';
+import 'package:manufacturer/sharedPreferences.dart';
+
+
+
+
+
 class SignupPage extends StatefulWidget {
 
 
@@ -71,9 +75,10 @@ bool validateAndSave() {
         "Address":_address,
         "CNIC":_cnic
       });
-  
-  
-          Navigator.push(context, MaterialPageRoute(builder: (context) => MainWidget()));
+
+        setName(_fullName);
+        setEmail(_email);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
       }
    
 

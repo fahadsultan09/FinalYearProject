@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 class Constants{
 
-  static String appName = "Crypto App";
+  static String appName = "Manafacturer";
 
   //Colors for theme
   static Color lightPrimary = Color(0xfffcfcff);
