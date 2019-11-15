@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:manufacturer/utils/data.dart';
-import 'package:manufacturer/widgets/wallet.dart';
+import 'package:manufacturer/widgets/Medicine.dart';
 
 
 
@@ -24,7 +24,7 @@ class _MedicinesState extends State<Medicines> {
         itemBuilder: (BuildContext context, int index) {
           Map coin = coins[index];
 
-          return Wallet(
+          return MedicineClass(
             name: coin['name'],
             icon: coin['icon'],
             rate: coin['rate'],

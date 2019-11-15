@@ -1,14 +1,16 @@
 import 'dart:async';
+import 'dart:core';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:manufacturer/Login/Login_X.dart';
+import 'package:manufacturer/screens/Products/Products.dart';
 import 'package:manufacturer/screens/ProfilePage.dart';
-import 'package:manufacturer/screens/transactions.dart';
-import 'package:manufacturer/screens/wallets.dart';
-import 'package:manufacturer/sharedPreferences.dart';
+
+import 'Products/Batch.dart';
 
 
 
@@ -28,7 +30,17 @@ class _MainPageState extends State<MainPage> {
   FirebaseAuth auth = FirebaseAuth.instance;
   String uid;
 
+  void getDetails(){
+     Firestore.instance.collection('Manufacturer').document(uid).get().then((DocumentSnapshot documentSnapshot) async {
+     setState(() {
 
+      _manfacturerName =  documentSnapshot.data["FullName"].toString();
+      _manfacturerEmail = documentSnapshot.data['Email'].toString();
+     });
+   }
+      
+);
+  }
   @override
   void initState() { 
     super.initState();
@@ -37,136 +49,109 @@ class _MainPageState extends State<MainPage> {
       setState(() {
         uid =  value.uid.toString();
         print(uid);
+        getDetails();
       });
       
     });
 
-  getManName();
+    // print("The name of the man is" +getManName().toString());
   
-    if(getName()==null){  }
-    else{ getName().then(updateName); }
+    // if(getName()==null){ 
+
+    //  }
+    // else{ getName().then(updateName); }
     
       }
-      String _manfacturerName = "Fahad Sultan";
-      String _manfacturerEmail = "";
+      String _manfacturerName = "Loading..", _manfacturerEmail = "Loading..";
+      
       String result = "Hey Fahad";
       @override
       Widget build(BuildContext context) {
         return 
-        Scaffold(
-          appBar: AppBar(
-            // backgroundColor: Colors.white,
-            title: Text("Home Page",),
-            centerTitle: true,
-          ),
-           drawer: new Drawer(
-            child: new ListView(
-              children: <Widget>[
-                new UserAccountsDrawerHeader(
-                  accountEmail: new Text("RDJ@gmail.com",style: TextStyle(color: Colors.black)),
-                  accountName: new Text("Robert Downey Jr",style: TextStyle(color: Colors.black,fontSize: 20.0)),       
-                  currentAccountPicture:  new CircleAvatar(
-                       backgroundImage: AssetImage('assets/logo.png'),
+        SafeArea(
+          top: true,
+                  child: Scaffold(
+            appBar: AppBar(
+              // backgroundColor: Colors.white,
+              title: Text("Home Page",),
+              centerTitle: true,
+            ),
+             drawer: new Drawer(
+              child: new ListView(
+                children: <Widget>[
+                  new UserAccountsDrawerHeader(
+                    accountEmail: new Text(_manfacturerEmail,style: TextStyle(color: Colors.black)),
+                    accountName: new Text(_manfacturerName,style: TextStyle(color: Colors.black,fontSize: 20.0)),       
+                    currentAccountPicture:  new CircleAvatar(
+                         backgroundImage: AssetImage('assets/logo.png'),
+                      ),
+                  
+                    decoration: new BoxDecoration(
+                      image: new DecorationImage(
+                        image: new AssetImage("assets/medicine-background.jpg"),
+                        fit: BoxFit.fill
+                      )
                     ),
-                
-                  decoration: new BoxDecoration(
-                    image: new DecorationImage(
-                      image: new AssetImage("assets/medicine-background.jpg"),
-                      fit: BoxFit.fill
-                    )
                   ),
+                  new ListTile(
+                    title: new Text("Product"),
+                    trailing: new Icon(Icons.arrow_upward),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new ProductScreen()));
+                    }
+                  ),
+                  new ListTile(
+                    title: new Text("Batches"),
+                    trailing: new Icon(Icons.arrow_upward),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new batchClass()));
+                    }
+                  ),
+                  new ListTile(
+                    title: new Text("Profile"),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new ProfilePage()));
+                    }
+                  ),
+                  new Divider(),
+                  new ListTile(
+                    subtitle: Text("Sign Out From the Application"),
+                    title: new Text("Sign Out"),
+                    trailing: new Icon(Icons.exit_to_app),
+                    onTap: (){
+                      auth.signOut();
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (BuildContext context) => new LoginX()));
+                    }
+                  ),
+                ],
+              ),
+            ),
+            body: new Container(
+              child: ListView(
+              // padding: EdgeInsets.symmetric(horizontal: 10),
+              children: <Widget>[
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage("assets/logo.png",),
+                    radius: 25,
+                  ),
+                  title: Text(_manfacturerName),
+                  subtitle: Text(_manfacturerEmail),
                 ),
-                new ListTile(
-                  title: new Text("Page One"),
-                  trailing: new Icon(Icons.arrow_upward),
-                  onTap: () {
-                    // Navigator.of(context).pop();
-                    // Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new Page("First Page")));
-                  }
-                ),
-                new ListTile(
-                  title: new Text("Profile"),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new ProfilePage()));
-                  }
-                ),
-                new Divider(),
-                new ListTile(
-                  title: new Text("Cancel"),
-                  trailing: new Icon(Icons.cancel),
-                  onTap: () => Navigator.pop(context),
-                ),
+    
+                SizedBox(height: 20),
+    
+                
+      
+    
+    
               ],
             ),
-          ),
-          body: new Container(
-            child: ListView(
-            // padding: EdgeInsets.symmetric(horizontal: 10),
-            children: <Widget>[
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage("assets/logo.png",),
-                  radius: 25,
-                ),
-                title: Text(_manfacturerName),
-                subtitle: Text("novartis_pharmaceuticals"+"@gmail.com"),
-              ),
-    
-              SizedBox(height: 20),
-    
-              
-              Align(
-                alignment: Alignment.center,
-           
-                child: DefaultTabController(
-                   
-                  length: 2,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      TabBar(
-                        
-                        isScrollable: false,
-                        labelColor: Theme.of(context).accentColor,
-                        unselectedLabelColor: Theme.of(context)
-                            .textTheme.caption.color,
-                        tabs: <Widget>[
-                          Tab(
-                            icon: Icon(Icons.local_hospital),
-                            text: "Medicines",
-                          ),
-                          Tab(
-                            icon: Icon(Icons.sync),
-                            text: "Transactions",
-                          ),
-                          // Tab(
-                          //   text: "Buy/Sell",
-                          // ),
-                        ],
-                      ),
-    
-                    
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        height: MediaQuery.of(context).size.height*2,
-                        child: TabBarView(
-                          children: <Widget>[
-                            Medicines(),
-                            Transactions(),
-                            // BuyandSell(),
-                          ],
-                        ),
-                      ),
-    
-                    ],
-                  ),
-                ),
-              ),
-    
-    
-            ],
-          ),
+            ),
           ),
         );
                 
@@ -211,15 +196,14 @@ class _MainPageState extends State<MainPage> {
          this._manfacturerName = value; 
         });
   }
-    void getManName() async{
-   Firestore.instance.collection('Manufacturer').document(uid).get().then((DocumentSnapshot){
-     setState(() {
-      _manfacturerName =  DocumentSnapshot.data['Full Name'].toString();
-      _manfacturerEmail = DocumentSnapshot.data['Email'].toString();
+//     Future<String> getManName() async{
+  
 
-     });
-   }
-      
-);
-  }
+// Firestore.instance.collection('Manufacturer').document(uid).get().then((document) {
+ 
+//    print(uid);
+//    return document.data["FullName"].toString();
+// });
+
+//   }
 }

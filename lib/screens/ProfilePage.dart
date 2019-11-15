@@ -96,7 +96,7 @@ String _name =  "Novartis Pharmaceuticals Pakistan";
                           ),
                       new Center(
                         child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             SizedBox(height: _height/12,),
 
@@ -106,9 +106,9 @@ String _name =  "Novartis Pharmaceuticals Pakistan";
                               backgroundImage: AssetImage("assets/logo.png"),
                             ),
                             new SizedBox(height: _height/25.0,),
-                            Text(_name,style: new TextStyle(fontWeight: FontWeight.bold, fontSize: _width/15, color: Colors.black),),
+                            Text(_name,style: new TextStyle(fontWeight: FontWeight.bold, fontSize: _width/20, color: Colors.black),),
                              new Padding(padding: new EdgeInsets.only(top: _height/30, left: _width/8, right: _width/8),
-                             child: Text("Consumer",style: TextStyle(fontWeight: FontWeight.normal,fontSize: _width/25,color: Colors.black),textAlign: TextAlign.center,),
+                             child: Text("Manafacturer",style: TextStyle(fontWeight: FontWeight.normal,fontSize: _width/25,color: Colors.black),textAlign: TextAlign.center,),
                              
                              ),
                           new Divider(height: _height/30,color: Colors.black,),

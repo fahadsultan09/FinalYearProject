@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:manufacturer/screens/main_page.dart';
-import 'package:manufacturer/sharedPreferences.dart';
+import 'package:manufacturer/utils/sharedPreferences.dart';
 
 
 
@@ -86,11 +86,7 @@ bool validateAndSave() {
           catch (e){
     
             print("User not created " + e.toString());
-            // _scaffoldKey.currentState.showSnackBar(
-            //     SnackBar(
-            //       content: new Text(e.toString()),
-            //       duration: new Duration(seconds: 10),
-            //     ));
+
         }
         }
     
