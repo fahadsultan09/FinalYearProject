@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
-
-import 'package:manufacturer/screens/main_page.dart';
-
+import '../main_page.dart';
 import 'Authencation.dart';
 import 'Login_X.dart';
 

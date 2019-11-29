@@ -19,7 +19,7 @@ List names = [
 
 List types = ["recieved", "sent"];
 
-List coins = [
+List batch = [
   {
     "icon": "assets/medicine Logo.png",
     "name": "Pandadol",

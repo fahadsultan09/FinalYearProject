@@ -19,9 +19,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  
+  # qr_utils: ^0.1.4
+  # qr_utils: ^0.1.1
+  firebase_storage:
+  crypto:
   cupertino_icons: ^0.1.2
   image_picker: ^0.6.1
   barcode_scan: ^1.0.0
@@ -54,7 +56,6 @@ flutter:
     - assets/medicine Logo.png
     - assets/logo.png
     - assets/medicine-background.jpg
-    - assets/fahad.jpg
     - assets/googleLogo.png
     - assets/Add Person.png
   module:

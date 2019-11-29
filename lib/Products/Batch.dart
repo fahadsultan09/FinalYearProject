@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:manufacturer/screens/transactions.dart';
-
-import '../Medicines.dart';
+import 'package:manufacturer/Products/Medicines.dart';
+import 'package:manufacturer/Products/transactions.dart';
 
 class batchClass extends StatefulWidget {
   @override

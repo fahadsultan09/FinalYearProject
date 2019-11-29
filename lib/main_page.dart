@@ -7,11 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:manufacturer/Login/Login_X.dart';
-import 'package:manufacturer/screens/Products/Products.dart';
-import 'package:manufacturer/screens/ProfilePage.dart';
-
-import 'Products/Batch.dart';
-
+import 'package:manufacturer/Products/Batch.dart';
+import 'package:manufacturer/Products/Products.dart';
+import 'package:manufacturer/Profile/ProfilePage.dart';
 
 
 
@@ -53,15 +51,7 @@ class _MainPageState extends State<MainPage> {
       });
       
     });
-
-    // print("The name of the man is" +getManName().toString());
-  
-    // if(getName()==null){ 
-
-    //  }
-    // else{ getName().then(updateName); }
-    
-      }
+  }
       String _manfacturerName = "Loading..", _manfacturerEmail = "Loading..";
       
       String result = "Hey Fahad";
@@ -98,7 +88,7 @@ class _MainPageState extends State<MainPage> {
                     trailing: new Icon(Icons.arrow_upward),
                     onTap: () {
                       Navigator.of(context).pop();
-                      Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new ProductScreen()));
+                      Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new homePageApplication()));
                     }
                   ),
                   new ListTile(

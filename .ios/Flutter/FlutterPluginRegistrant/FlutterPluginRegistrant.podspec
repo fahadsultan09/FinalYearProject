@@ -21,6 +21,7 @@ Depends on all your plugins, and provides a function to register them.
   s.dependency 'cloud_firestore'
   s.dependency 'firebase_auth'
   s.dependency 'firebase_core'
+  s.dependency 'firebase_storage'
   s.dependency 'image_picker'
   s.dependency 'shared_preferences'
 end

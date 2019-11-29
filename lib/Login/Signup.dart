@@ -4,8 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:manufacturer/screens/main_page.dart';
 import 'package:manufacturer/utils/sharedPreferences.dart';
+
+import '../main_page.dart';
 
 
 
@@ -24,7 +25,7 @@ class _SignupPageState extends State<SignupPage> {
   File image;
 
   
-  void _ChangeText(){
+  void _changeText(){
     setState(() {
      if(obsureTextValue){
        obsureTextValue = false;
@@ -62,7 +63,7 @@ bool validateAndSave() {
       try {
     //  AuthResult authResult = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email,password:_password);
                      
-          FirebaseUser _user =  (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email,password:_password)) as FirebaseUser;
+          FirebaseUser _user =  (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email,password:_password));
 
     
         // Firestore _firestore = Firestore.instance;

@@ -1,4 +1,6 @@
 // // import 'package:final_year_project/screens/EditProfile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // // import 'package:final_year_project/kf_drawer.dart';
 // import 'package:flutter/cupertino.dart';
@@ -76,7 +78,37 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-String _name =  "Novartis Pharmaceuticals Pakistan";
+String _manfacturerName = "Loading..", _manfacturerEmail = "Loading..";
+// String _name =  "Novartis Pharmaceuticals Pakistan";
+  FirebaseAuth auth = FirebaseAuth.instance;
+  String uid;
+
+  void getDetails(){
+     Firestore.instance.collection('Manufacturer').document(uid).get().then((DocumentSnapshot documentSnapshot) async {
+     setState(() {
+
+      _manfacturerName =  documentSnapshot.data["FullName"].toString();
+      _manfacturerEmail = documentSnapshot.data['Email'].toString();
+     });
+   }
+      
+);
+  }
+  @override
+  void initState() { 
+    super.initState();
+   
+    auth.currentUser().then((value){
+      setState(() {
+        uid =  value.uid.toString();
+        print(uid);
+        getDetails();
+      });
+      
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
           final _width = MediaQuery.of(context).size.width;
@@ -106,7 +138,7 @@ String _name =  "Novartis Pharmaceuticals Pakistan";
                               backgroundImage: AssetImage("assets/logo.png"),
                             ),
                             new SizedBox(height: _height/25.0,),
-                            Text(_name,style: new TextStyle(fontWeight: FontWeight.bold, fontSize: _width/20, color: Colors.black),),
+                            Text(_manfacturerName,style: new TextStyle(fontWeight: FontWeight.bold, fontSize: _width/20, color: Colors.black),),
                              new Padding(padding: new EdgeInsets.only(top: _height/30, left: _width/8, right: _width/8),
                              child: Text("Manafacturer",style: TextStyle(fontWeight: FontWeight.normal,fontSize: _width/25,color: Colors.black),textAlign: TextAlign.center,),
                              
